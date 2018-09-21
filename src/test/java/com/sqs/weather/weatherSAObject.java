@@ -35,6 +35,10 @@ public class weatherSAObject {
         return getTemps(driver.findElement(tableLocator), param);
     }
 
+    public int[] getParam(String param){
+        return getTemps(driver.findElement(tableLocator), param);
+    }
+
     private int[] getTemps(WebElement table, String param) throws NumberFormatException{
         int[] temp = new int[7];;
         //System.out.println(table.toString()); //Path of the table
@@ -42,10 +46,10 @@ public class weatherSAObject {
         List<WebElement> tableRows = tbody.findElements(By.tagName("tr"));
         for(int i=0; i<tableRows.size();i++){
             if(tableRows.get(i).getText().contains(param)){
-                System.out.println(tableRows.get(i).getText());
+                //System.out.println(tableRows.get(i).getText());
                 List<WebElement> rowColumns = tableRows.get(i).findElements(By.tagName("td"));
                 for (int j=0; j<rowColumns.size();j++){
-                    System.out.println(rowColumns.get(j).getText());
+                    //System.out.println(rowColumns.get(j).getText());
                     temp[j] = Integer.parseInt(rowColumns.get(j).getText());
                 }
 

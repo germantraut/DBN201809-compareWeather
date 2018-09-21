@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -41,6 +42,12 @@ public class AppTest
         // get weather from weatherSA
         weatherSAObject weatherSA = new weatherSAObject(driver);
         tempWeatherSAMax = weatherSA.populate("George", "Max temperature");
+        tempWeatherSAMin = weatherSA.getParam("Min temperature");
+
+        System.out.println(Arrays.toString(tempWeatherSAMax));
+        System.out.println(Arrays.toString(tempWeatherSAMin));
+
+
 
 
 

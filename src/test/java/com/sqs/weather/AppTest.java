@@ -29,7 +29,8 @@ public class AppTest
 
         int[] tempWeatherSAMax;
         int[] tempWeatherSAMin;
-        int[] tempnews24;
+        int[] tempnews24Max;
+        int[] tempnews24Min;
 
         // check if weatherSA is online
         String baseUrl = "http://www.weathersa.co.za/";
@@ -47,10 +48,6 @@ public class AppTest
         System.out.println(Arrays.toString(tempWeatherSAMax));
         System.out.println(Arrays.toString(tempWeatherSAMin));
 
-
-
-
-
         // news24
         baseUrl = "http://weather.news24.com/";
         expectedTitle = "";
@@ -61,13 +58,25 @@ public class AppTest
 
         // get weather from news24
         news24Object news24 = new news24Object(driver);
-        //tempnews24 = news24.populate("George");
-        //System.out.println(tempnews24.toString());
+        tempnews24Max = news24.populate("George", "High Temp");
+        tempnews24Min = news24.getParam("Low Temp");
+        System.out.println(Arrays.toString(tempnews24Max));
+        System.out.println(Arrays.toString(tempnews24Min));
 
 
-        //TODO compare temperature
+
+        // compare temperature
+        String[] nextDays = {"Tomorrow: ", "In Two days: ", "In Three days: ", "In four days: "};
+        for (int i = 1; i<5;i++){
+            if (tempnews24Max[i] == tempWeatherSAMax[i] && tempnews24Min[i] == tempWeatherSAMin[i]){
+                System.out.println(nextDays[i-1]+"same");
+            } else {
+                System.out.println(nextDays[i-1]+"different");
+            }
+        }
 
     }
+
 
     @After
     public void tearDown() {

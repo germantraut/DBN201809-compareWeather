@@ -30,7 +30,7 @@ public class weatherSAObject {
         driver.findElement(searchIconLocator).click();
 
         // page with temp for the city
-        Assert.assertTrue("Wrong Town", driver.findElement(townFoundLocator).getText().contains(town));
+        Assert.assertTrue("Wrong Town, Search unsuccessful", driver.findElement(townFoundLocator).getText().contains(town));
         // get temp from table
         return getTemps(driver.findElement(tableLocator), param);
     }
@@ -40,7 +40,7 @@ public class weatherSAObject {
     }
 
     private int[] getTemps(WebElement table, String param) throws NumberFormatException{
-        int[] temp = new int[7];;
+        int[] temp = new int[7];
         //System.out.println(table.toString()); //Path of the table
         WebElement tbody = table.findElement(By.tagName("tbody"));
         List<WebElement> tableRows = tbody.findElements(By.tagName("tr"));
